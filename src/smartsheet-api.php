@@ -135,7 +135,7 @@
                     'type' => 'boolean',
                     'location' => 'json'
                 ],
-            ]
+            ],
         ],
         'DeleteUser' => [
             'httpMethod' => 'DELETE',
@@ -170,10 +170,48 @@
                     'enum' => ['true', 'false'],
                 ],
             ]
-        ]
+        ],
+        'ListSheets' => [
+            'httpMethod' => 'GET',
+            'uri' => '/{ApiVersion}/sheets',
+            'responseModel' => 'Sheet',
+            'parameters' => [
+                'ApiVersion' => [
+                    'required' => true,
+                    'type'     => 'string',
+                    'location' => 'uri',
+                ],
+            ]
+        ],
+        'GetSheet' => [
+            'httpMethod' => 'GET',
+            'uri' => '/{ApiVersion}/sheets/{id}',
+            'responseModel' => 'Sheet',
+            'parameters' => [
+                'ApiVersion' => [
+                    'required' => true,
+                    'type'     => 'string',
+                    'location' => 'uri',
+                ],
+                'id' => [
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ],
+            ]
+        ],
     ],
     'models' => [
         'User' => [
+            'type' => 'object',
+            'properties' => [
+                'statusCode' => ['location' => 'statusCode']
+            ],
+            'additionalProperties' => [
+                'location' => 'json'
+            ]
+        ],
+        'Sheet' => [
             'type' => 'object',
             'properties' => [
                 'statusCode' => ['location' => 'statusCode']
